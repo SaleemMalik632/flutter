@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace, must_be_immutable, sort_child_properties_last, non_constant_identifier_names, use_build_context_synchronously, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:working_on_the_first/home_page.dart';
+import 'package:working_on_the_first/model/catalog.dart';
+import 'package:working_on_the_first/Wight/ItemWight.dart';
+import 'package:flutter/services.dart'; // Import for rootBundle
 
 void main() {
   runApp(MyApp());
@@ -123,20 +127,28 @@ class _MyCenteredMessageState extends State<MyCenteredMessage> {
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class Home extends StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
 
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    final dumaylist = List.generate(10, (index) => CatalogModel.AllProducts[0]);
     return Scaffold(
       appBar: AppBar(title: Text('Home Page')),
-      body: Column(children: [
-        SizedBox(height: 50),
-        Text(
-          'home Page ',
-          style: TextStyle(fontSize: 50),
-        )
-      ]),
+      body: ListView.builder(
+        itemCount: dumaylist.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.all(8.0),
+            child: ItemWight(
+              Item: dumaylist[index],
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -159,11 +171,40 @@ class Services extends StatelessWidget {
   }
 }
 
+class LoadingJson extends StatefulWidget {
+  const LoadingJson({super.key});
 
+  @override
+  State<LoadingJson> createState() => _LoadingJsonState();
+}
 
+class _LoadingJsonState extends State<LoadingJson> {
+  @override
+  void initState() {
+    super.initState();
+    LoadingJson_();
+  }
+
+  LoadingJson_() async {
+    var Json_Data = await rootBundle.loadString("assets/files/Data.json");
+    print(Json_Data);
+  }    
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Loading Json')),
+      body: Column(children: [
+        SizedBox(height: 50),
+        Text(
+          'L ',
+          style: TextStyle(fontSize: 50),
+        )
+      ]),
+    );
+  }
+}
 
 class MYDraw extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -181,7 +222,7 @@ class MYDraw extends StatelessWidget {
               )),
           ListTile(
             leading: Icon(
-              Icons.home, 
+              Icons.home,
             ),
             title: const Text('Home'),
             onTap: () {
@@ -199,6 +240,16 @@ class MYDraw extends StatelessWidget {
                   .push(MaterialPageRoute(builder: (context) => Services()));
             },
           ),
+          ListTile(
+            leading: Icon(
+              Icons.assessment,
+            ),
+            title: const Text('JSON Object'),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => LoadingJson()));
+            },
+          )
         ],
       ),
     );

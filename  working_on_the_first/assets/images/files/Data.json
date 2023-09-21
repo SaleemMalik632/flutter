@@ -1,0 +1,64 @@
+{
+    "Products": [ 
+        {
+            "name": "iPhone 13 Pro",
+            "price": " 999",
+            "description": "The iPhone 13 Pro is the latest model from Apple with advanced features.",
+            "imageUrl": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15.jpg"
+        },
+        {
+            "name": "Samsung Galaxy S21",
+            "price": "899",
+            "description": "The Samsung Galaxy S21 boasts a high-resolution display and powerful camera.",
+            "imageUrl": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15.jpg"
+        },
+        {
+            "name": "Google Pixel 6",
+            "price": "799",
+            "description": "The Google Pixel 6 offers a pure Android experience and excellent camera quality.",
+            "imageUrl": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15.jpg"
+        },
+        {
+            "name": "OnePlus 9 Pro",
+            "price": "899",
+            "description": "The OnePlus 9 Pro is known for its fast charging and smooth performance.",
+            "imageUrl": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15.jpg"
+        },
+        {
+            "name": "Xiaomi Mi 11",
+            "price": "699",
+            "description": "The Xiaomi Mi 11 features a beautiful AMOLED display and a competitive price.",
+            "imageUrl": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15.jpg"
+        },
+        {
+            "name": "Sony Xperia 1 III",
+            "price": "1099",
+            "description": "The Sony Xperia 1 III is a flagship with a focus on multimedia and photography.",
+            "imageUrl": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15.jpg"
+        },
+        {
+            "name": "LG Velvet",
+            "price": "599",
+            "description": "The LG Velvet offers a unique design and a good balance of features.",
+            "imageUrl": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15.jpg"
+        },
+        {
+            "name": "Huawei P40 Pro",
+            "price": "799",
+            "description": "The Huawei P40 Pro has a versatile camera system and a powerful chipset.",
+            "imageUrl": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15.jpg"
+        },
+        {
+            "name": "Motorola Moto G Power",
+            "price": "249",
+            "description": "The Moto G Power is known for its long-lasting battery life and affordability.",
+            "imageUrl": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15.jpg"
+        },
+        {
+            "name": "ASUS ROG Phone 5",
+            "price": "999",
+            "description": "The ASUS ROG Phone 5 is a gaming-oriented smartphone with high-end specs.",
+            "imageUrl": "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15.jpg"
+        }
+    ]
+}
