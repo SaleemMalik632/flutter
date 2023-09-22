@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace, must_be_immutable, sort_child_properties_last, non_constant_identifier_names, use_build_context_synchronously, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:convert';
 import 'package:working_on_the_first/home_page.dart';
 import 'package:working_on_the_first/model/catalog.dart';
 import 'package:working_on_the_first/Wight/ItemWight.dart';
@@ -186,9 +187,11 @@ class _LoadingJsonState extends State<LoadingJson> {
   }
 
   LoadingJson_() async {
-    var Json_Data = await rootBundle.loadString("assets/files/Data.json");
+    final Json_Data = await rootBundle.loadString("assets/files/Data.json");
+    final DecodedData = jsonDecode(Json_Data);
+    var ProductData = DecodedData['Products'];
     print(Json_Data);
-  }    
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(

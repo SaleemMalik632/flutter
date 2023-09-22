@@ -14,10 +14,10 @@ class ItemWight extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         child: ListTile(
-      leading: Image.network(Item.ProImage),
-      title: Text(Item.ProductName),
-      subtitle: Text(Item.ProdcictDis),
-      trailing: Text(Item.ProductPrice,
+      leading: Image.network(Item.proImage),
+      title: Text(Item.productName),
+      subtitle: Text(Item.productDis),
+      trailing: Text(Item.productPrice,
           style: TextStyle(color: Colors.blue, fontSize: 15)),
     ));
   }
