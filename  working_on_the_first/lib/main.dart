@@ -95,6 +95,7 @@ class _MyCenteredMessageState extends State<MyCenteredMessage> {
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
+
                 ),
               ),
             ),
@@ -165,8 +166,9 @@ class Services extends StatelessWidget {
         SizedBox(height: 50),
         Text(
           'Services Page ',
-          style: TextStyle(fontSize: 50),
+          style: TextStyle(fontSize: 50,color: Colors.red),
         )
+
       ]),
     );
   }
@@ -200,7 +202,7 @@ class _LoadingJsonState extends State<LoadingJson> {
         SizedBox(height: 50),
         Text(
           'L ',
-          style: TextStyle(fontSize: 50),
+          style: TextStyle(fontSize: 50,backgroundColor: Colors.yellow),
         )
       ]),
     );
