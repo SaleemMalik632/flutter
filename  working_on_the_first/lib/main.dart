@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace, must_be_immutable, sort_child_properties_last, non_constant_identifier_names, use_build_context_synchronously, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace, must_be_immutable, sort_child_properties_last, non_constant_identifier_names, use_build_context_synchronously, prefer_const_literals_to_create_immutables, library_private_types_in_public_api
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
@@ -6,6 +6,7 @@ import 'package:working_on_the_first/home_page.dart';
 import 'package:working_on_the_first/model/catalog.dart';
 import 'package:working_on_the_first/Wight/ItemWight.dart';
 import 'package:flutter/services.dart'; // Import for rootBundle
+
 
 void main() {
   runApp(MyApp());
@@ -95,7 +96,6 @@ class _MyCenteredMessageState extends State<MyCenteredMessage> {
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
-
                 ),
               ),
             ),
@@ -166,48 +166,143 @@ class Services extends StatelessWidget {
         SizedBox(height: 50),
         Text(
           'Services Page ',
-          style: TextStyle(fontSize: 50,color: Colors.red),
+          style: TextStyle(fontSize: 50, color: Colors.red),
         )
-
       ]),
     );
   }
 }
 
+// Loading Json file  and show it in the card
 class LoadingJson extends StatefulWidget {
-  const LoadingJson({super.key});
-
+  const LoadingJson({Key? key}) : super(key: key);
   @override
   State<LoadingJson> createState() => _LoadingJsonState();
 }
 
 class _LoadingJsonState extends State<LoadingJson> {
+  List<Product> dataList = [];
   @override
   void initState() {
     super.initState();
-    LoadingJson_();
+    loadJsonData();
   }
 
-  LoadingJson_() async {
-    final Json_Data = await rootBundle.loadString("assets/files/Data.json");
-    final DecodedData = jsonDecode(Json_Data);
-    var ProductData = DecodedData['Products'];
-    print(Json_Data);
+  loadJsonData() async {
+    try {
+      final String jsonText =
+          await rootBundle.loadString('assets/files/Data.json');
+      final jsonData = json.decode(jsonText);
+      if (jsonData['Products'] is List) {
+        dataList = (jsonData['Products'] as List)
+            .map((e) => Product.fromJson(e))
+            .toList();
+        setState(() {});
+      }
+    } catch (e) {
+      print('Error loading JSON: $e');
+    }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Loading Json')),
-      body: Column(children: [
-        SizedBox(height: 50),
-        Text(
-          'L ',
-          style: TextStyle(fontSize: 50,backgroundColor: Colors.yellow),
-        )
-      ]),
+      appBar: AppBar(title: Text('Loading JSON with Simple Card')),
+      body: ListView.builder(
+        itemCount: dataList.length,
+        itemBuilder: (context, index) {
+          return Padding(
+              padding: EdgeInsets.all(8.0),
+              child: JsonCard(
+                Item: dataList[index],
+              ));
+        },
+      ),
     );
   }
 }
+
+class Product {
+  final String name;
+  final String price;
+  final String description;
+  final String imageUrl;
+  Product({
+    required this.name,
+    required this.price,
+    required this.description,
+    required this.imageUrl,
+  });
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      name: json['name'],
+      price: json['price'],
+      description: json['description'],
+      imageUrl: json['imageUrl'],
+    );
+  }
+}
+
+// gride view of all the customers
+
+class GridViewExample extends StatefulWidget {
+  const GridViewExample({Key? key}) : super(key: key);
+  @override
+  _GridViewExampleState createState() => _GridViewExampleState();
+}
+
+class _GridViewExampleState extends State<GridViewExample> {
+  List<Product> dataList = [];
+  @override
+  void initState() {
+    super.initState();
+    loadJsonData();
+  }
+
+  Future<void> loadJsonData() async {
+    try {
+      final String jsonText =
+          await rootBundle.loadString('assets/files/Data.json');
+      final jsonData = json.decode(jsonText);
+      if (jsonData['Products'] is List) {
+        dataList = (jsonData['Products'] as List)
+            .map((e) => Product.fromJson(e))
+            .toList();
+        setState(() {});
+      }
+    } catch (e) {
+      print('Error loading JSON: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Grid View')),
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // You can change the number of columns here
+          crossAxisSpacing: 10.0,
+          mainAxisSpacing: 10.0,
+        ),
+        itemCount: dataList.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.all(8.0),
+            child: JsonCard(
+              Item: dataList[index],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+
+
+
+
 
 class MYDraw extends StatelessWidget {
   @override
@@ -254,7 +349,27 @@ class MYDraw extends StatelessWidget {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => LoadingJson()));
             },
-          )
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.view_agenda,
+            ),
+            title: const Text('Grid View'),
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => GridViewExample()));
+            },
+          ),
+          // ListTile(
+          //   leading: Icon(
+          //     Icons.animation,
+          //   ),
+          //   title: const Text('Animated Icons'),
+          //   onTap: () {
+          //     Navigator.of(context).push(
+          //         MaterialPageRoute(builder: (context) => RadialAnimation()));
+          //   },
+          // ),
         ],
       ),
     );
