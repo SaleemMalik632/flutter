@@ -14,12 +14,16 @@ class JsonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: ListTile(
-      leading: Image.network(Item.imageUrl),
-      title: Text(Item.name),
-      subtitle: Text(Item.description),
-      trailing:
-          Text(Item.price, style: TextStyle(color: Colors.blue, fontSize: 15)),
-    ));
+      child: ListTile(
+        leading: Hero(
+          tag: {Item.name}, // Use a unique hero tag for each item
+          child: Image.network(Item.imageUrl),
+        ),
+        title: Text(Item.name),
+        subtitle: Text(Item.description),
+        trailing: Text(Item.price,
+            style: TextStyle(color: Colors.blue, fontSize: 15)),
+      ),
+    );
   }
 }

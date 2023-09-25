@@ -1,12 +1,15 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace, must_be_immutable, sort_child_properties_last, non_constant_identifier_names, use_build_context_synchronously, prefer_const_literals_to_create_immutables, library_private_types_in_public_api
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:working_on_the_first/Wight/AddToCart.dart';
 import 'dart:convert';
 import 'package:working_on_the_first/home_page.dart';
 import 'package:working_on_the_first/model/catalog.dart';
 import 'package:working_on_the_first/Wight/ItemWight.dart';
+import 'package:working_on_the_first/Wight/AddToCart.dart';
+import 'package:working_on_the_first/Wight/ItemDetail.dart';
 import 'package:flutter/services.dart'; // Import for rootBundle
-
+import 'package:velocity_x/velocity_x.dart';
 
 void main() {
   runApp(MyApp());
@@ -207,18 +210,24 @@ class _LoadingJsonState extends State<LoadingJson> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Loading JSON with Simple Card')),
-      body: ListView.builder(
-        itemCount: dataList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-              padding: EdgeInsets.all(8.0),
-              child: JsonCard(
-                Item: dataList[index],
-              ));
-        },
-      ),
-    );
+        appBar: AppBar(title: Text('JSON')),
+        body: ListView.builder(
+          itemCount: dataList.length,
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HomeDetails(
+                          item: dataList[
+                              index])), // Replace HomePage with the actual widget for your homepage
+                );
+              },
+              child: JsonCard(Item: dataList[index]),
+            );
+          },
+        ));
   }
 }
 
@@ -249,6 +258,7 @@ class GridViewExample extends StatefulWidget {
   @override
   _GridViewExampleState createState() => _GridViewExampleState();
 }
+
 class _GridViewExampleState extends State<GridViewExample> {
   List<Product> dataList = [];
   @override
@@ -256,6 +266,7 @@ class _GridViewExampleState extends State<GridViewExample> {
     super.initState();
     loadJsonData();
   }
+
   Future<void> loadJsonData() async {
     try {
       final String jsonText =
@@ -284,22 +295,111 @@ class _GridViewExampleState extends State<GridViewExample> {
         ),
         itemCount: dataList.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.all(8.0),
-            child: JsonCard(
-              Item: dataList[index],
-            ),
-          );
+          return InkWell(child: JsonCard(Item: dataList[index]));
         },
       ),
     );
   }
 }
 
+class ShoppingCard extends StatefulWidget {
+  @override
+  _ShoppingCardState createState() => _ShoppingCardState();
+}
 
+class _ShoppingCardState extends State<ShoppingCard> {
+  bool isLoading = true; // Indicates whether data is loading
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        isLoading = false; // Data loading is complete
+      });
+    });
+  }
 
-
-
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Shopping Cart'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddtoCart()),
+          );
+        },
+        child: Icon(Icons.add_shopping_cart), // Icon for "Add to Cart"
+      ),
+      body: Container(
+        width: 400,
+        height: 200,
+        child: Card(
+          margin: EdgeInsets.all(8.0),
+          elevation: 5,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 150,
+                height: 150,
+                child: Image.asset('assets/images/loginpage.png'),
+              ),
+              // Conditional rendering of CircularProgressIndicator
+              isLoading
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                      ),
+                    )
+                  : SizedBox(), // Hide CircularProgressIndicator once data is loaded
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      'Product Title'
+                          .text
+                          .color(Color.fromARGB(255, 73, 121, 160))
+                          .bold
+                          .xl
+                          .make(),
+                      SizedBox(height: 8.0),
+                      'Product Description'
+                          .text
+                          .textStyle(context.captionStyle)
+                          .make()
+                          .p12(),
+                      '\$99.99'.text.bold.xl.make(),
+                      SizedBox(height: 8.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text('Buy'),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.favorite_border),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class MYDraw extends StatelessWidget {
   @override
@@ -357,16 +457,16 @@ class MYDraw extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => GridViewExample()));
             },
           ),
-          // ListTile(
-          //   leading: Icon(
-          //     Icons.animation,
-          //   ),
-          //   title: const Text('Animated Icons'),
-          //   onTap: () {
-          //     Navigator.of(context).push(
-          //         MaterialPageRoute(builder: (context) => RadialAnimation()));
-          //   },
-          // ),
+          ListTile(
+            leading: Icon(
+              Icons.shopping_cart,
+            ),
+            title: const Text('Shoping Cart'),
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ShoppingCard()));
+            },
+          ),
         ],
       ),
     );
