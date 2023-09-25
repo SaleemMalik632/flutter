@@ -244,13 +244,11 @@ class Product {
 }
 
 // gride view of all the customers
-
 class GridViewExample extends StatefulWidget {
   const GridViewExample({Key? key}) : super(key: key);
   @override
   _GridViewExampleState createState() => _GridViewExampleState();
 }
-
 class _GridViewExampleState extends State<GridViewExample> {
   List<Product> dataList = [];
   @override
@@ -258,7 +256,6 @@ class _GridViewExampleState extends State<GridViewExample> {
     super.initState();
     loadJsonData();
   }
-
   Future<void> loadJsonData() async {
     try {
       final String jsonText =
