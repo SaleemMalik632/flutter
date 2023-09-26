@@ -17,6 +17,7 @@ class HomeDetails extends StatelessWidget {
       appBar: AppBar(
         title: 'Prodect View'.text.bold.make(),
       ),
+      backgroundColor: context.canvasColor,
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

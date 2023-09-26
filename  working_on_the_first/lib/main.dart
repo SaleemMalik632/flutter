@@ -332,7 +332,8 @@ class _ShoppingCardState extends State<ShoppingCard> {
             MaterialPageRoute(builder: (context) => AddtoCart()),
           );
         },
-        child: Icon(Icons.add_shopping_cart), // Icon for "Add to Cart"
+        backgroundColor: Colors.green,
+        child: Icon(Icons.add_shopping_cart),
       ),
       body: Container(
         width: 400,
