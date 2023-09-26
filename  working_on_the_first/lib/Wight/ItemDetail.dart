@@ -17,7 +17,7 @@ class HomeDetails extends StatelessWidget {
       appBar: AppBar(
         title: 'Prodect View'.text.bold.make(),
       ),
-      backgroundColor: context.canvasColor,
+      backgroundColor:Colors.deepPurple,
       bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -50,7 +50,8 @@ class HomeDetails extends StatelessWidget {
                           horizontal: 12.0), // Adjust the value as needed
                       child: item.description.text.xl
                           .textStyle(context.captionStyle)
-                          .make().p16(),
+                          .make()
+                          .p16(),
                     )
                   ],
                 ).py64(),
