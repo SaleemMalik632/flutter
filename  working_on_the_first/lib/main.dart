@@ -11,6 +11,7 @@ import 'package:working_on_the_first/Wight/ItemDetail.dart';
 import 'package:flutter/services.dart'; // Import for rootBundle
 import 'package:velocity_x/velocity_x.dart';
 
+
 void main() {
   runApp(MyApp());
 }
