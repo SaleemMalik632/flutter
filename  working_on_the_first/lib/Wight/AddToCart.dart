@@ -17,7 +17,7 @@ class AddtoCart extends StatelessWidget {
           ],
         ));
   }
-}
+}  
 
 class CartChart extends StatelessWidget {
   const CartChart({super.key});
@@ -30,7 +30,7 @@ class CartChart extends StatelessWidget {
         children: [
           '1000RS'.text.bold.make(),
           ElevatedButton(
-              onPressed: () {
+              onPressed: () { 
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('Buy not supported yet'),
