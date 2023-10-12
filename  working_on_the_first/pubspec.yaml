@@ -33,6 +33,8 @@ dependencies:
   font_awesome_flutter: ^10.5.0
   cupertino_icons: ^1.0.2
   velocity_x: ^4.1.1
+  flutter_switch: any
+  image_picker: any
 
 
 

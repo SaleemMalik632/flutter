@@ -71,6 +71,7 @@ class _MyCenteredMessageState extends State<MyCenteredMessage> {
             ),
             Text('Welcome Page', style: TextStyle(fontSize: 20)),
             Padding(
+              // Adjust the padding as needed
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: TextFormField(
                 validator: (value) {
@@ -422,7 +423,7 @@ class MYDraw extends StatelessWidget {
             leading: Icon(
               Icons.home,
             ),
-            title: const Text('Home') ,
+            title: const Text('Home'),
             onTap: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => Home()));
@@ -468,6 +469,16 @@ class MYDraw extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => ShoppingCard()));
             },
           ),
+          ListTile(
+            leading: Icon(
+              Icons.text_snippet,
+            ),
+            title: const Text('widgets'),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => TextPage()));
+            },
+          )
         ],
       ),
     );
