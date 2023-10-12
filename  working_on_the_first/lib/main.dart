@@ -417,7 +417,7 @@ class MYDraw extends StatelessWidget {
                   'saleemalik444@gmail.com'), // You can add the user's email here if needed
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage(
-                    'assets/images/saleem.jpeg'), // Replace with the path to the user's image
+                    'assets/images/dp.jfif'), // Replace with the path to the user's image
               )),
           ListTile(
             leading: Icon(
