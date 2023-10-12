@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:ui';
 
 class TextPage extends StatefulWidget {
   @override
@@ -14,6 +17,12 @@ class _TextPageState extends State<TextPage> {
   int selectedOption = 0;
   bool status = false;
   double _value = 10.0;
+  String imageUrl =
+      'https://images.unsplash.com/photo-1630519473475-7f4c9e6d9d9f?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzNnx8fHxlbnwwfHx8fA%3D%3D&ixlib=rb-1.2.1';
+  Future<http.Response> _fetchImage() {
+    return http.get(Uri.parse(imageUrl));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -389,7 +398,7 @@ class _TextPageState extends State<TextPage> {
             Row(
               children: [
                 Flexible(
-                  flex: 2,
+                  flex: 1,
                   child: Container(
                     color: Colors.red,
                     height: 100,
@@ -403,8 +412,7 @@ class _TextPageState extends State<TextPage> {
                   ),
                 ),
                 Flexible(
-                  
-                  flex: 2,
+                  flex: 3,
                   child: Container(
                     color: Colors.blue,
                     height: 100,
@@ -435,6 +443,90 @@ class _TextPageState extends State<TextPage> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(height: 20),
+            Text('LimitedBox'),
+            Row(
+              children: [
+                LimitedBox(
+                  maxWidth: 100,
+                  child: Container(
+                    color: Colors.red,
+                    height: 100,
+                  ),
+                ),
+                LimitedBox(
+                  maxWidth: 100,
+                  child: Container(
+                    color: Colors.green,
+                    height: 100,
+                  ),
+                ),
+                LimitedBox(
+                  maxWidth: 100,
+                  child: Container(
+                    color: Colors.blue,
+                    height: 100,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Text('AnimatedCrossFade'),
+            AnimatedCrossFade(
+              duration: const Duration(seconds: 3),
+              firstChild: const FlutterLogo(
+                  style: FlutterLogoStyle.horizontal, size: 100.0),
+              secondChild: const FlutterLogo(
+                  style: FlutterLogoStyle.stacked, size: 100.0),
+              crossFadeState: CrossFadeState.showFirst,
+            ),
+            SizedBox(height: 20),
+            Text('AnimatedOpacity'),
+            AnimatedOpacity(
+              opacity: 0.5,
+              duration: Duration(seconds: 3),
+              child:
+                  FlutterLogo(style: FlutterLogoStyle.horizontal, size: 100.0),
+            ),
+            SizedBox(height: 20),
+            Text('Menu Button'),
+            PopupMenuButton(
+              icon: Icon(Icons.menu),
+              itemBuilder: (BuildContext context) {
+                return [
+                  PopupMenuItem(
+                    child: Text('Item 1'),
+                  ),
+                  PopupMenuItem(
+                    child: Text('Item 2'),
+                  ),
+                  PopupMenuItem(
+                    child: Text('Item 3'),
+                  ),
+                ];
+              },
+            ),
+            SizedBox(height: 20),
+            Text('devider'),
+            Divider(
+              color: Colors.black,
+              thickness: 2,
+            ),
+            SizedBox(height: 20),
+            Text('image filter'),
+            ImageFiltered(
+              imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+              child: Image.network(
+                'https://picsum.photos/250?image=91',
+              ),
+            ),
+            ColorFiltered(
+              colorFilter:
+                  const ColorFilter.mode(Colors.grey, BlendMode.saturation),
+              child: Image.network(
+                'https://picsum.photos/250?image=91',
+              ),
             ),
           ],
         ),
