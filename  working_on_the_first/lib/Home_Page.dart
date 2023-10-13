@@ -314,6 +314,22 @@ class _TextPageState extends State<TextPage> {
               'https://picsum.photos/250?image=9',
             ),
             SizedBox(height: 20),
+            SizedBox(height: 20),
+            Text('Table'),
+            Table(border: TableBorder.all(), children: [
+              TableRow(
+                children: [
+                  Text('Name'),
+                  Text('Saleem'),
+                ],
+              ),
+              TableRow(
+                children: [
+                  Text('Name'),
+                  Text('Malik'),
+                ],
+              ),
+            ]),
             Text('Rich Text'),
             RichText(
               overflow: TextOverflow.clip,
@@ -332,22 +348,6 @@ class _TextPageState extends State<TextPage> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
-            Text('Table'),
-            Table(border: TableBorder.all(), children: [
-              TableRow(
-                children: [
-                  Text('Name'),
-                  Text('Saleem'),
-                ],
-              ),
-              TableRow(
-                children: [
-                  Text('Name'),
-                  Text('Malik'),
-                ],
-              ),
-            ]),
             SizedBox(height: 20),
             Text('Wrap'),
             Wrap(
