@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       themeMode: ThemeMode.light,
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(primarySwatch: Colors.amber),
       debugShowCheckedModeBanner: false,
       routes: {
         '/MyCenteredMessage': (context) => TextPage(),
@@ -411,10 +411,10 @@ class MYDraw extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-              accountName: Text('Saleem Malik',
+              accountName: Text('pakistani',
                   style: TextStyle(fontSize: 21, color: Colors.white)),
               accountEmail: Text(
-                  'saleemalik444@gmail.com'), // You can add the user's email here if needed
+                  'pakistani@gmail.com'), // You can add the user's email here if needed
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage(
                     'assets/images/dp.jfif'), // Replace with the path to the user's image
@@ -479,6 +479,7 @@ class MYDraw extends StatelessWidget {
                   .push(MaterialPageRoute(builder: (context) => TextPage()));
             },
           )
+          // Add more ListTile widgets here for more pages
         ],
       ),
     );

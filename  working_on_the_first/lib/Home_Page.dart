@@ -320,7 +320,7 @@ class _TextPageState extends State<TextPage> {
               TableRow(
                 children: [
                   Text('Name'),
-                  Text('Saleem'),
+                  Text('boss'),
                 ],
               ),
               TableRow(
@@ -343,7 +343,7 @@ class _TextPageState extends State<TextPage> {
                 style: DefaultTextStyle.of(context).style,
                 children: const <TextSpan>[
                   TextSpan(
-                      text: 'Saleem Malik',
+                      text: 'hero',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                 ],
               ),
@@ -534,3 +534,25 @@ class _TextPageState extends State<TextPage> {
     );
   }
 }
+
+// new class that have the fist widget
+class FirstWidget extends StatelessWidget {
+  const FirstWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("First Widget")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // mak a
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// make ThirdWidget
