@@ -528,6 +528,19 @@ class _TextPageState extends State<TextPage> {
                 'https://picsum.photos/250?image=91',
               ),
             ),
+            Baseline(
+              baseline: 300.0, // Adjust this value as needed
+              baselineType: TextBaseline.alphabetic,
+              child: Text(
+                'Text with different font size',
+                style: TextStyle(fontSize: 24.0),
+              ),
+            ),
+            SizedBox(height: 20),
+            FittedBox(
+              fit: BoxFit.contain,
+              child: const FlutterLogo(),
+            ),
           ],
         ),
       ),
